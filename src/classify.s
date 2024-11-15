@@ -220,7 +220,18 @@ mul1_done:
     lw t1, 0(s8)
     # mul a1, t0, t1 # length of h array and set it as second argument
     # FIXME: Replace 'mul' with your own implementation
-    
+    li a1, 0 
+    beqz t0, mul2_done
+    beqz t1, mul2_done
+mul2_loop:
+    andi t2, t1, 1
+    beqz t2, mul2_skip
+    add a1, a1, t0
+mul2_skip:
+    slli t0, t0, 1
+    srli t1, t1, 1
+    bnez t1, mul2_loop
+mul2_done:
     jal relu
     
     lw a0, 0(sp)
