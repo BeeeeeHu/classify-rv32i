@@ -100,3 +100,9 @@ At the end of the inner loop, the program prepares to move to the next row in th
 #### Outer Loop (`outer_loop_end`)
 
 Once the outer loop completes, the epilogue section restores the saved registers and prepares for returning from the function. The program retrieves the saved values of the registers (`ra`, `s0` through `s5`) from the stack, adjusts the stack pointer to remove them, and then jumps back to the return address stored in `ra`. This ensures the program can return to the caller with the correct state, having restored the necessary register values.
+
+---
+
+Read Matrix
+---
+This code implements multiplication through repeated addition. It starts by initializing `s1` to 0 and setting `t3` as a counter equal to `t1`. In the loop, the value of `t2` is added to `s1` in each iteration, and `t3` is decremented until it reaches zero. Once `t3` is zero, the loop ends, and the accumulated result (which is the product of `t2` and `t1`) is stored in `s1`. Essentially, this code multiplies `t2` by `t1` using repeated addition.
