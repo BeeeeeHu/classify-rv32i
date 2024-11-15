@@ -106,3 +106,10 @@ Once the outer loop completes, the epilogue section restores the saved registers
 Read Matrix
 ---
 This code implements multiplication through repeated addition. It starts by initializing `s1` to 0 and setting `t3` as a counter equal to `t1`. In the loop, the value of `t2` is added to `s1` in each iteration, and `t3` is decremented until it reaches zero. Once `t3` is zero, the loop ends, and the accumulated result (which is the product of `t2` and `t1`) is stored in `s1`. Essentially, this code multiplies `t2` by `t1` using repeated addition.
+
+---
+
+Write Matrix
+---
+
+This code performs multiplication through repeated addition. It starts by initializing `s4` to 0 and copying the value of `s2` into `t1` to set up the loop counter. In the loop, the value in `s3` is added to `s4` on each iteration, and `t1` is decremented until it reaches zero. When `t1` becomes zero, the loop ends, and the result of the repeated addition (which is the product of `s3` and `s2`) is stored in `s4`. This is a manual implementation of multiplying `s3` by `s2` using addition.
