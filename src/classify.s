@@ -253,6 +253,18 @@ mul2_done:
     lw t0, 0(s3)
     lw t1, 0(s6)
     # mul a0, t0, t1 # FIXME: Replace 'mul' with your own implementation
+    li a0, 0
+    beqz t0, mul3_done
+    beqz t1, mul3_done
+mul3_loop:
+    andi t2, t1, 1
+    beqz t2, mul3_skip
+    add a0, a0, t0
+mul3_skip:
+    slli t0, t0, 1
+    srli t1, t1, 1
+    bnez t1, mul3_loop
+mul3_done:
     slli a0, a0, 2
     jal malloc 
     beq a0, x0, error_malloc
