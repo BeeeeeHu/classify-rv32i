@@ -1,6 +1,6 @@
 # Assignment 2: Classify
 
-abs
+Abs
 ---
 1. **`sub t0, zero, t0`**  
    This instruction negates the value in `t0`. If `t0` was `5`, it becomes `-5`; if it was `-3`, it becomes `3`.
