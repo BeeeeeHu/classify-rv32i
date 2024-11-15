@@ -30,7 +30,6 @@ relu:
 loop_start:
     # TODO: Add your own implementation
     beq t1, a1, loop_end
-    
     slli t2, t1, 2       
     add t3, a0, t2      
     lw t4, 0(t3)        
