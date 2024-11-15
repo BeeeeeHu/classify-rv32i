@@ -38,6 +38,7 @@ loop_start:
     lw t5, 0(t4)             # Load element
 
     ble t5, t0, loop_continue # Skip if no update needed
+    
     mv t0, t5                # Update max value
     mv t1, t2                # Update max index
     
