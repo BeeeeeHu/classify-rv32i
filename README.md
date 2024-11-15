@@ -113,3 +113,73 @@ Write Matrix
 ---
 
 This code performs multiplication through repeated addition. It starts by initializing `s4` to 0 and copying the value of `s2` into `t1` to set up the loop counter. In the loop, the value in `s3` is added to `s4` on each iteration, and `t1` is decremented until it reaches zero. When `t1` becomes zero, the loop ends, and the result of the repeated addition (which is the product of `s3` and `s2`) is stored in `s4`. This is a manual implementation of multiplying `s3` by `s2` using addition.
+
+---
+
+Classification
+---
+These four code segments implement multiplication using bitwise operations (bit shifting and addition) instead of directly using the `mul` instruction. This approach is based on the Russian Peasant Multiplication algorithm, which follows these steps:
+
+1. Check if the least significant bit (LSB) of `t1` is 1.
+2. If it is 1, add `t0` to the result.
+3. Left shift `t0` by 1, which is equivalent to multiplying `t0` by 2.
+4. Right shift `t1` by 1, which is equivalent to dividing `t1` by 2.
+5. Repeat the process until `t1` becomes 0.
+
+Each segment follows the same logic, but the results are stored in different registers (`a0` or `a1`). This method demonstrates how to perform multiplication efficiently using bitwise operations, which is especially useful in hardware implementations where multiplication instructions may not be available.
+
+---
+Result
+---
+
+test_abs_minus_one (__main__.TestAbs.test_abs_minus_one) ... ok
+test_abs_one (__main__.TestAbs.test_abs_one) ... ok
+test_abs_zero (__main__.TestAbs.test_abs_zero) ... ok
+test_argmax_invalid_n (__main__.TestArgmax.test_argmax_invalid_n) ... ok
+test_argmax_length_1 (__main__.TestArgmax.test_argmax_length_1) ... ok
+test_argmax_standard (__main__.TestArgmax.test_argmax_standard) ... ok
+test_chain_1 (__main__.TestChain.test_chain_1) ... ok
+test_classify_1_silent (__main__.TestClassify.test_classify_1_silent) ... ok
+test_classify_2_print (__main__.TestClassify.test_classify_2_print) ... ok
+test_classify_3_print (__main__.TestClassify.test_classify_3_print) ... ok
+test_classify_fail_malloc (__main__.TestClassify.test_classify_fail_malloc) ... ok
+test_classify_not_enough_args (__main__.TestClassify.test_classify_not_enough_args) ... ok
+test_dot_length_1 (__main__.TestDot.test_dot_length_1) ... ok
+test_dot_length_error (__main__.TestDot.test_dot_length_error) ... ok
+test_dot_length_error2 (__main__.TestDot.test_dot_length_error2) ... ok
+test_dot_standard (__main__.TestDot.test_dot_standard) ... ok
+test_dot_stride (__main__.TestDot.test_dot_stride) ... ok
+test_dot_stride_error1 (__main__.TestDot.test_dot_stride_error1) ... ok
+test_dot_stride_error2 (__main__.TestDot.test_dot_stride_error2) ... ok
+test_matmul_incorrect_check (__main__.TestMatmul.test_matmul_incorrect_check) ... ok
+test_matmul_length_1 (__main__.TestMatmul.test_matmul_length_1) ... ok
+test_matmul_negative_dim_m0_x (__main__.TestMatmul.test_matmul_negative_dim_m0_x) ... ok
+test_matmul_negative_dim_m0_y (__main__.TestMatmul.test_matmul_negative_dim_m0_y) ... ok
+test_matmul_negative_dim_m1_x (__main__.TestMatmul.test_matmul_negative_dim_m1_x) ... ok
+test_matmul_negative_dim_m1_y (__main__.TestMatmul.test_matmul_negative_dim_m1_y) ... ok
+test_matmul_nonsquare_1 (__main__.TestMatmul.test_matmul_nonsquare_1) ... ok
+test_matmul_nonsquare_2 (__main__.TestMatmul.test_matmul_nonsquare_2) ... ok
+test_matmul_nonsquare_outer_dims (__main__.TestMatmul.test_matmul_nonsquare_outer_dims) ... ok
+test_matmul_square (__main__.TestMatmul.test_matmul_square) ... ok
+test_matmul_unmatched_dims (__main__.TestMatmul.test_matmul_unmatched_dims) ... ok
+test_matmul_zero_dim_m0 (__main__.TestMatmul.test_matmul_zero_dim_m0) ... ok
+test_matmul_zero_dim_m1 (__main__.TestMatmul.test_matmul_zero_dim_m1) ... ok
+test_read_1 (__main__.TestReadMatrix.test_read_1) ... ok
+test_read_2 (__main__.TestReadMatrix.test_read_2) ... ok
+test_read_3 (__main__.TestReadMatrix.test_read_3) ... ok
+test_read_fail_fclose (__main__.TestReadMatrix.test_read_fail_fclose) ... ok
+test_read_fail_fopen (__main__.TestReadMatrix.test_read_fail_fopen) ... ok
+test_read_fail_fread (__main__.TestReadMatrix.test_read_fail_fread) ... ok
+test_read_fail_malloc (__main__.TestReadMatrix.test_read_fail_malloc) ... ok
+test_relu_invalid_n (__main__.TestRelu.test_relu_invalid_n) ... ok
+test_relu_length_1 (__main__.TestRelu.test_relu_length_1) ... ok
+test_relu_standard (__main__.TestRelu.test_relu_standard) ... ok
+test_write_1 (__main__.TestWriteMatrix.test_write_1) ... ok
+test_write_fail_fclose (__main__.TestWriteMatrix.test_write_fail_fclose) ... ok
+test_write_fail_fopen (__main__.TestWriteMatrix.test_write_fail_fopen) ... ok
+test_write_fail_fwrite (__main__.TestWriteMatrix.test_write_fail_fwrite) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 27.204s
+
+OK
