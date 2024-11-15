@@ -288,7 +288,18 @@ classify:
     lw t1, 0(s6)
     mul a1, t0, t1 # load length of array into second arg
     # FIXME: Replace 'mul' with your own implementation
-    
+    li a1, 0
+    beqz t0, mul4_done
+    beqz t1, mul4_done
+mul4_loop:
+    andi t2, t1, 1
+    beqz t2, mul4_skip
+    add a1, a1, t0
+mul4_skip:
+    slli t0, t0, 1
+    srli t1, t1, 1
+    bnez t1, mul4_loop
+mul4_done:    
     jal argmax
     
     mv t0, a0 # move return value of argmax into t0
