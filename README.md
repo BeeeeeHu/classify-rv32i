@@ -1,5 +1,16 @@
 # Assignment 2: Classify
 
+abs
+---
+1. **`sub t0, zero, t0`**  
+   This instruction negates the value in `t0`. If `t0` was `5`, it becomes `-5`; if it was `-3`, it becomes `3`.
+
+2. **`sw t0, 0(a0)`**  
+   This stores the value in `t0` (after it was negated) into the memory location at the address stored in `a0`.
+
+
+---
+
 ReLU
 ---
 
