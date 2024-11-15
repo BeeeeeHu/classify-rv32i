@@ -37,38 +37,47 @@ dot:
 loop_start:
     bge t1, a2, loop_end
     # TODO: Add your own implementation
+    li t2, 0
+    li t3, 0
 
-    slli t2, t1, 2
-    add t2, a0, t2
-    lw t3, 0(t2)
-    beq t3, zero, next_round    
-    
-    lw t4, 0(t5)
-    beq t4, zero, next_round
+mul_stride_0:
+    beq t2, a3, end_stride_0
+    add t3, t3, t1 # i * stride_0
+    addi t2, t2, 1 # t2++
+    j mul_stride_0
 
-# mul start (mul t2, t3, t4)
+end_stride_0:
+    slli t3, t3, 2    
+    add t4, a0, t3
+    lw t4 0(t4)
+
     li t2, 0 
+    li t3, 0
+
+mul_stride_1:
+    beq t2, a4, end_stride_1
+    add t3, t3, t1
+    addi t2, t2, 1
+    j mul_stride_1
+
+end_stride_1:
+    slli t3, t3, 2
+    add t5, a1, t3
+    lw t5, 0(t5)
+
+    li t2, 0 
+    li t3, 0
 
 mul_loop:
-    beqz t4, done
-    andi t6, t4, 1
-    beqz t6, skip
-    add t2, t2, t3
-
-skip:
-    slli t3, t3, 1
-    srli t4, t4, 1
+    beq t3, t4, end_mul
+    add t2, t2, t5
+    addi t3, t3, 1
     j mul_loop
 
-done:
-# mul end 
-
+end_mul:
     add t0, t0, t2
-
-next_round:
     addi t1, t1, 1
-    slli t2, a4, 2
-    add t5, t5, t2
+    
     j loop_start
 
 loop_end:
