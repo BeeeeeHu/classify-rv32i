@@ -59,6 +59,8 @@ Continue until all elements are checked. Return the index of the maximum value.
 
 #### Loop Continuation
 - The loop index (`t2`) is incremented, and the process repeats until all elements are processed.
+
+---
   
 Dot Product
 ---
