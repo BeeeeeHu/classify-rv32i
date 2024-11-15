@@ -36,7 +36,14 @@ loop_start:
     lw t4, 0(t3)        
     
     bge t4, zero, skip  
-    sw zero, 0(t3) 
+    sw zero, 0(t3)      
+    
+skip:
+    addi t1, t1, 1     
+    j loop_start       
+
+loop_end:
+    jr ra
 error:
     li a0, 36          
-    j exit          
+    j exit  
