@@ -167,6 +167,21 @@ classify:
     lw t0, 0(s3)
     lw t1, 0(s8)
     # mul a0, t0, t1 # FIXME: Replace 'mul' with your own implementation
+    li a0, 0          # Initialize result to 0
+    beqz t0, mul1_done    # If t0 is zero, exit the loop
+    beqz t1, mul1_done    # If t1 is zero, exit the loop
+
+mul1_loop:
+    andi t2, t1, 1    # Check the least significant bit of t1
+    beqz t2, mul1_skip    # If the least significant bit is 0, skip the addition
+    add a0, a0, t0    # If the last bit is 1, add t0 to the result
+
+mul1_skip:
+    slli t0, t0, 1    # Left shift t0 (multiply by 2)
+    srli t1, t1, 1    # Right shift t1 (divide by 2)
+    bnez t1, mul1_loop    # If t1 is not zero, repeat the loop
+
+mul1_done:
     slli a0, a0, 2
     jal malloc 
     beq a0, x0, error_malloc
