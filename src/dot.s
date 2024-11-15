@@ -38,6 +38,39 @@ loop_start:
     bge t1, a2, loop_end
     # TODO: Add your own implementation
 
+    slli t2, t1, 2
+    add t2, a0, t2
+    lw t3, 0(t2)
+    beq t3, zero, next_round    
+    
+    lw t4, 0(t5)
+    beq t4, zero, next_round
+
+# mul start (mul t2, t3, t4)
+    li t2, 0 
+
+mul_loop:
+    beqz t4, done
+    andi t6, t4, 1
+    beqz t6, skip
+    add t2, t2, t3
+
+skip:
+    slli t3, t3, 1
+    srli t4, t4, 1
+    j mul_loop
+
+done:
+# mul end 
+
+    add t0, t0, t2
+
+next_round:
+    addi t1, t1, 1
+    slli t2, a4, 2
+    add t5, t5, t2
+    j loop_start
+
 loop_end:
     mv a0, t0
     jr ra
