@@ -65,14 +65,10 @@ Dot Product
 #### 1. `loop_start` - Main Loop Start
 The main loop begins by checking if the current index `t1` has reached the upper limit `a2`. If `t1` is greater than or equal to `a2`, the loop ends. Otherwise, the program continues with the next steps.
 
----
-
 #### 2. Initialization
 Before entering the loop, two registers are initialized:
 - `t2` is set to 0, which will be used as the counter for `stride_0` multiplication.
 - `t3` is also set to 0 and will accumulate the results of `stride_0` multiplication.
-
----
 
 #### 3. `mul_stride_0` - Stride 0 Multiplication Loop
 The loop processes `stride_0` multiplication:
@@ -81,14 +77,10 @@ The loop processes `stride_0` multiplication:
 
 Once `t2` reaches `a3`, the loop ends.
 
----
-
 #### 4. `end_stride_0` - Compute Address and Load Element from `array_0`
 After `stride_0` multiplication:
 - The result in `t3` is multiplied by 4 (using a left shift operation) to convert it into a byte offset.
 - This offset is added to the base address of `array_0` (held in `a0`), and the element at the computed address is loaded into `t4`.
-
----
 
 #### 5. `mul_stride_1` - Stride 1 Multiplication Loop
 The same process as `stride_0` is performed for `stride_1`:
@@ -96,21 +88,15 @@ The same process as `stride_0` is performed for `stride_1`:
 - While `t2` is less than `a4` (the stride count for this operation), the current index `t1` is added to `t3` (accumulating for `stride_1`).
 - Once `t2` reaches `a4`, the loop ends.
 
----
-
 #### 6. `end_stride_1` - Compute Address and Load Element from `array_1`
 After `stride_1` multiplication:
 - The result in `t3` is converted into a byte offset by multiplying by 4.
 - This offset is added to the base address of `array_1` (held in `a1`), and the element at the computed address is loaded into `t5`.
 
----
-
 #### 7. `mul_loop` - Multiplication and Accumulation
 In this loop:
 - The program adds the value in `t5` (the element from `array_1`) to the accumulator `t2`.
 - The counter `t3` is incremented to track the number of operations, and this continues until `t3` reaches `t4` (the number of elements in `array_0`).
-
----
 
 #### 8. `end_mul` - Final Result Update
 After the multiplication loop:
