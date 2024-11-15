@@ -89,3 +89,14 @@ Dot Product
    The accumulated result in `t2` is added to the total in `t0`. The loop index `t1` is then incremented, and the process continues until all elements are processed, resulting in the dot product.
 
 ---
+
+Matrix Multiplication 
+---
+
+#### Inner Loop (`inner_loop_end`)
+
+At the end of the inner loop, the program prepares to move to the next row in the matrix. First, it calculates the byte offset needed to move to the next row by multiplying the number of columns (`a2`) by 4 (since each element is 4 bytes). This offset is added to the current row pointer (`s3`) to point to the next row in memory. The row counter (`s0`) is then incremented to track the progress of the rows being processed. The program then jumps back to the start of the outer loop to continue the next iteration.
+
+#### Outer Loop (`outer_loop_end`)
+
+Once the outer loop completes, the epilogue section restores the saved registers and prepares for returning from the function. The program retrieves the saved values of the registers (`ra`, `s0` through `s5`) from the stack, adjusts the stack pointer to remove them, and then jumps back to the return address stored in `ra`. This ensures the program can return to the caller with the correct state, having restored the necessary register values.
